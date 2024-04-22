@@ -57,9 +57,18 @@
 </header>
 <form action="/board/writepro" method="post">
     <div class="form-floating">
-        <textarea class="form-control" placeholder="write" id="floatingTextarea2"
-                  name="content" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">Comments</label>
+        <textarea class="form-control" id="floatingTextarea1"
+                  name="title" style="height: 50px"></textarea>
+        <label for="floatingTextarea2">제목</label>
+        <div>
+        <textarea class="form-control" placeholder="수강평을 작성해주세요." id="floatingTextarea2"
+                  name="content" style="height: 300px"></textarea>
+            <label for="floatingTextarea2"></label>
+        </div>
+        <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary" type="submit">작성</button>
+            <a class="btn btn-primary" type="button" href="/board/list">목록</a>
+        </div>
     </div>
 </form>
 </body>

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BoardController {
@@ -19,7 +21,7 @@ public class BoardController {
         return "boardWrite";
     }
 
-    @GetMapping("/board/writepro")
+    @PostMapping("/board/writepro")
     public String boardWritePro(Board board, Model model) {
         boardService.write(board);
         model.addAttribute("message", "글 작성이 완료되었습니다.");
@@ -52,8 +54,14 @@ public class BoardController {
         return "boardModify";
     }
 
-    @GetMapping("/*")
-    public String gitExample() {
-        return "";
+    @PostMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable("id") Integer id, Board board) {
+        Board boardTemp = boardService.boardView(id);
+        boardTemp.setTitle(board.getTitle());
+        boardTemp.setContent(board.getContent());
+
+        boardService.write(boardTemp);
+        return "redirect:/board/list";
     }
+
 }
