@@ -51,4 +51,9 @@ public class BoardController {
         model.addAttribute("board", boardService.boardView(id));
         return "boardModify";
     }
+
+    @GetMapping("/*")
+    public String gitExample() {
+        return "";
+    }
 }
